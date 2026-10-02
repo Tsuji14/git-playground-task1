@@ -16,6 +16,7 @@ function main() {
       console.log(`Added note #${note.id}: ${note.text}`);
       break;
     }
+
     case "list": {
       const notes = store.all();
       if (notes.length === 0) {
@@ -27,45 +28,44 @@ function main() {
       }
       break;
     }
-<<<<<<< HEAD
-=======
+
     case "search": {
-        const term = rest.join(" ").trim();
-        const found = store.search(term);
-        if (found.length === 0) {
-          console.log(`No notes match "${term}"`);
-          return;
-        }
-        for (const note of found) {
-          console.log(`#${note.id}  ${note.text}`);
-        }
-        break;
+      const term = rest.join(" ").trim();
+      const found = store.search(term);
+      if (found.length === 0) {
+        console.log(`No notes match "${term}"`);
+        return;
       }
-      case "edit": {
-        const id = Number(rest[0]);
-        const text = rest.slice(1).join(" ").trim();
-        store.edit(id, text);
-        console.log(`Updated note #${id}`);
-        break;
+      for (const note of found) {
+        console.log(`#${note.id}  ${note.text}`);
       }
-      case "delete": {
-        const id = Number(rest[0]);
-        const ok = store.remove(id);
-        // 以下は現在のファイルにある内容をそのまま残す
->>>>>>> 4b9f26c (Update notes.js)
+      break;
+    }
+
+    case "edit": {
+      const id = Number(rest[0]);
+      const text = rest.slice(1).join(" ").trim();
+      store.edit(id, text);
+      console.log(`Updated note #${id}`);
+      break;
+    }
+
     case "delete": {
       const id = Number(rest[0]);
       const ok = store.remove(id);
-      console.log(ok ? `Deleted note #${id}` : `No note #${id} found`);
+      console.log(
+        ok ? `Deleted note #${id}` : `No note #${id} found`
+      );
       break;
     }
+
     default:
-<<<<<<< HEAD
-      console.log("Commands: add <text> | list | delete <id>");
-=======
-      console.log("Commands: add <text> | list | search <term> | edit <id> <text> | delete <id>");
->>>>>>> 4b9f26c (Update notes.js)
-      console.log(`(Session locks after ${config.SESSION_TIMEOUT_MINUTES} minutes of inactivity.)`);
+      console.log(
+        "Commands: add <text> | list | search <term> | edit <id> <text> | delete <id>"
+      );
+      console.log(
+        `(Session locks after ${config.SESSION_TIMEOUT_MINUTES} minutes of inactivity.)`
+      );
   }
 }
 
